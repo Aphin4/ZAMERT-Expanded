@@ -6,14 +6,17 @@ using InventorySystem;
 using InventorySystem.Items;
 using InventorySystem.Items.Pickups;
 using LabApi.Features.Wrappers;
+using LabApi.Loader.Features.Plugins;
 using Mirror;
 using ProjectMER.Features.Objects;
+using Respawning;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using Utils;
+using static ServerLogs;
 using Log = ZAMERT.ZAMERTLogger;
 
 namespace ZAMERT
@@ -105,8 +108,7 @@ public class MDTO : ZAMERTDTO
     public List<PrimitiveModifyModule> PrimitiveModifyModules { get; set; }
     public List<LoopSpeakerControlModule> LoopSpeakerModules { get; set; }
     public List<ItemSpawnerControlModule> ItemSpawnerModules { get; set; }
-    public List<PlayerLinkModule> PlayerLink { get; set; } = new List<PlayerLinkModule>();
-    }
+}
 
 public class FMDTO : ZAMERTDTO
 {
@@ -123,8 +125,7 @@ public class FMDTO : ZAMERTDTO
     public List<FPrimitiveModifyModule> PrimitiveModifyModules { get; set; }
     public List<FLoopSpeakerControlModule> LoopSpeakerModules { get; set; }
     public List<FItemSpawnerControlModule> ItemSpawnerModules { get; set; }
-    public List<FPlayerLinkModule> PlayerLink { get; set; } = new List<FPlayerLinkModule>();
-    }
+}
 
 [Serializable]
 public class HODTO : MDTO
@@ -176,6 +177,15 @@ public class IODTO : MDTO
     public List<AudioModule> DenyAudioModules { get; set; } = new List<AudioModule>();
     public List<CGNModule> DenyGroovieNoiseToCall { get; set; } = new List<CGNModule>();
     public List<CFEModule> DenyFunctionToCall { get; set; } = new List<CFEModule>();
+    public List<AnimationDTO> DenyAnimationModules { get; set; } = new List<AnimationDTO>();
+    public WarheadActionType DenyWarheadActionType { get; set; }
+    public List<DropItem> DenyDropItems { get; set; } = new List<DropItem>();
+    public List<Commanding> DenyCommandings { get; set; } = new List<Commanding>();
+    public List<ExplodeModule> DenyExplodeModules { get; set; } = new List<ExplodeModule>();
+    public List<EffectGivingModule> DenyEffectGivingModules { get; set; } = new List<EffectGivingModule>();
+    public List<PrimitiveModifyModule> DenyPrimitiveModifyModules { get; set; } = new List<PrimitiveModifyModule>();
+    public List<LoopSpeakerControlModule> DenyLoopSpeakerModules { get; set; } = new List<LoopSpeakerControlModule>();
+    public List<ItemSpawnerControlModule> DenyItemSpawnerModules { get; set; } = new List<ItemSpawnerControlModule>();
 }
 
 [Serializable]
@@ -195,6 +205,15 @@ public class FIODTO : FMDTO
     public List<FAudioModule> DenyAudioModules { get; set; } = new List<FAudioModule>();
     public List<FCGNModule> DenyGroovieNoiseToCall { get; set; } = new List<FCGNModule>();
     public List<FCFEModule> DenyFunctionToCall { get; set; } = new List<FCFEModule>();
+    public List<FAnimationDTO> DenyAnimationModules { get; set; } = new List<FAnimationDTO>();
+    public ScriptValue DenyWarheadActionType { get; set; }
+    public List<FDropItem> DenyDropItems { get; set; } = new List<FDropItem>();
+    public List<FCommanding> DenyCommandings { get; set; } = new List<FCommanding>();
+    public List<FExplodeModule> DenyExplodeModules { get; set; } = new List<FExplodeModule>();
+    public List<FEffectGivingModule> DenyEffectGivingModules { get; set; } = new List<FEffectGivingModule>();
+    public List<FPrimitiveModifyModule> DenyPrimitiveModifyModules { get; set; } = new List<FPrimitiveModifyModule>();
+    public List<FLoopSpeakerControlModule> DenyLoopSpeakerModules { get; set; } = new List<FLoopSpeakerControlModule>();
+    public List<FItemSpawnerControlModule> DenyItemSpawnerModules { get; set; } = new List<FItemSpawnerControlModule>();
 }
 
 [Serializable]
@@ -214,6 +233,15 @@ public class IPDTO : MDTO
     public List<AudioModule> DenyAudioModules { get; set; } = new List<AudioModule>();
     public List<CGNModule> DenyGroovieNoiseToCall { get; set; } = new List<CGNModule>();
     public List<CFEModule> DenyFunctionToCall { get; set; } = new List<CFEModule>();
+    public List<AnimationDTO> DenyAnimationModules { get; set; } = new List<AnimationDTO>();
+    public WarheadActionType DenyWarheadActionType { get; set; }
+    public List<DropItem> DenyDropItems { get; set; } = new List<DropItem>();
+    public List<Commanding> DenyCommandings { get; set; } = new List<Commanding>();
+    public List<ExplodeModule> DenyExplodeModules { get; set; } = new List<ExplodeModule>();
+    public List<EffectGivingModule> DenyEffectGivingModules { get; set; } = new List<EffectGivingModule>();
+    public List<PrimitiveModifyModule> DenyPrimitiveModifyModules { get; set; } = new List<PrimitiveModifyModule>();
+    public List<LoopSpeakerControlModule> DenyLoopSpeakerModules { get; set; } = new List<LoopSpeakerControlModule>();
+    public List<ItemSpawnerControlModule> DenyItemSpawnerModules { get; set; } = new List<ItemSpawnerControlModule>();
 }
 
 [Serializable]
@@ -233,6 +261,15 @@ public class FIPDTO : FMDTO
     public List<FAudioModule> DenyAudioModules { get; set; } = new List<FAudioModule>();
     public List<FCGNModule> DenyGroovieNoiseToCall { get; set; } = new List<FCGNModule>();
     public List<FCFEModule> DenyFunctionToCall { get; set; } = new List<FCFEModule>();
+    public List<FAnimationDTO> DenyAnimationModules { get; set; } = new List<FAnimationDTO>();
+    public ScriptValue DenyWarheadActionType { get; set; }
+    public List<FDropItem> DenyDropItems { get; set; } = new List<FDropItem>();
+    public List<FCommanding> DenyCommandings { get; set; } = new List<FCommanding>();
+    public List<FExplodeModule> DenyExplodeModules { get; set; } = new List<FExplodeModule>();
+    public List<FEffectGivingModule> DenyEffectGivingModules { get; set; } = new List<FEffectGivingModule>();
+    public List<FPrimitiveModifyModule> DenyPrimitiveModifyModules { get; set; } = new List<FPrimitiveModifyModule>();
+    public List<FLoopSpeakerControlModule> DenyLoopSpeakerModules { get; set; } = new List<FLoopSpeakerControlModule>();
+    public List<FItemSpawnerControlModule> DenyItemSpawnerModules { get; set; } = new List<FItemSpawnerControlModule>();
 }
 
 [Serializable]
@@ -990,7 +1027,7 @@ public class MessageModule : RandomExecutionModule
 
             if (MessageType == MessageTypeE.Cassie)
             {
-                Announcer.Message(content, playBackground: true);
+                Announcer.Message(content, content, true, 0f, 1f);
             }
             else
             {
@@ -1026,7 +1063,7 @@ public class FMessageModule : FRandomExecutionModule
             MessageTypeE type = MessageType.GetValue(args, MessageTypeE.BroadCast);
             if (type == MessageTypeE.Cassie)
             {
-                Announcer.Message(content, playBackground: true);
+                Announcer.Message(content, content, true, 0, 1f);
             }
             else
             {
@@ -1684,155 +1721,6 @@ public class FItemSpawnerControlModule : FRandomExecutionModule
         });
     }
 }
-
-    [Serializable]
-    public class PlayerLinkModule : RandomExecutionModule
-    {
-        public string TargetObjectName;
-        public bool LockRotation;
-        public float Duration;
-        public bool FlashOnStart;
-        public bool FlashOnEnd;
-        public PlayerLinkTargetType TargetType;
-        public ZoneFacility AmertZone;
-        public override void Execute(ModuleGeneralArguments args)
-        {
-            MEC.Timing.CallDelayed(ActionDelay, () =>
-            {
-                int zoneInt = (int)AmertZone;
-                var targetZone = (MapGeneration.FacilityZone)zoneInt;
-                Transform root = args.Transform.root;
-                Transform target = FindTransformRecursive(root, TargetObjectName);
-
-                if (target == null) target = args.Transform;
-
-                List<Player> playersToMove = new List<Player>();
-
-                switch (TargetType)
-                {
-                    case PlayerLinkTargetType.Triggerer:
-                        if (args.Player != null) playersToMove.Add(args.Player);
-                        break;
-
-                    case PlayerLinkTargetType.All:
-                        playersToMove.AddRange(Player.List);
-                        break;
-
-                    case PlayerLinkTargetType.Zone:
-                        foreach (Player p in Player.List)
-                        {
-                            if (p.Zone == targetZone)
-                            {
-                                playersToMove.Add(p);
-                            }
-                        }
-                        break;
-                }
-
-                foreach (Player p in playersToMove)
-                {
-                    if (p == null) continue;
-
-                    if (p.GameObject.GetComponent<PlayerLinkController>() != null) continue;
-
-                    var controller = p.GameObject.AddComponent<PlayerLinkController>();
-                    controller.Init(p, target, LockRotation, Duration, FlashOnStart, FlashOnEnd);
-                }
-            });
-        }
-
-        private Transform FindTransformRecursive(Transform parent, string name)
-        {
-            if (string.IsNullOrEmpty(name)) return null;
-            foreach (Transform child in parent.GetComponentsInChildren<Transform>(true))
-            {
-                if (child.name == name) return child;
-            }
-            return null;
-        }
-    }
-
-    [Serializable]
-    public class FPlayerLinkModule : FRandomExecutionModule
-    {
-        public ScriptValue TargetObjectName { get; set; }
-        public ScriptValue LockRotation { get; set; }
-        public ScriptValue Duration { get; set; }
-        public ScriptValue FlashOnStart { get; set; }
-        public ScriptValue FlashOnEnd { get; set; }
-        public ScriptValue TargetZone { get; set; }
-        public ScriptValue TargetType { get; set; }
-
-        public override void Execute(FunctionArgument args)
-        {
-            MEC.Timing.CallDelayed(ActionDelay.GetValue(args, 0f), () =>
-            {
-                string tName = TargetObjectName.GetValue(args, "CameraMount");
-                bool lockRot = LockRotation.GetValue(args, false);
-                float dur = Duration.GetValue(args, 10.0f);
-                bool fStart = FlashOnStart.GetValue(args, false);
-                bool fEnd = FlashOnEnd.GetValue(args, false);
-
-                int targetTypeInt = Convert.ToInt32(TargetType.GetValue(args, 0));
-                int targetZoneInt = Convert.ToInt32(TargetZone.GetValue(args, 4));
-
-                var type = (PlayerLinkTargetType)targetTypeInt;
-                var zone = (ZoneFacility)targetZoneInt;
-
-                var targetType = (PlayerLinkTargetType)TargetType.GetValue(args, 0);
-                int zoneInt = TargetZone.GetValue(args, 0);
-                var gameZone = (MapGeneration.FacilityZone)zoneInt;
-
-
-                Transform root = args.Transform.root;
-                Transform target = FindTransformRecursive(root, tName);
-                if (target == null) target = args.Transform;
-
-
-                List<Player> playersToMove = new List<Player>();
-
-                switch (type)
-                {
-                    case PlayerLinkTargetType.Triggerer:
-                        if (args.Player != null) playersToMove.Add(args.Player);
-                        break;
-
-                    case PlayerLinkTargetType.All:
-                        playersToMove.AddRange(Player.List);
-                        break;
-
-                    case PlayerLinkTargetType.Zone:
-                        foreach (Player p in Player.List)
-                        {
-                            if (p.Zone == gameZone)
-                            {
-                                playersToMove.Add(p);
-                            }
-                        }
-                        break;
-                }
-                foreach (Player p in playersToMove)
-                {
-                    if (p == null) continue;
-
-                    if (p.GameObject.GetComponent<PlayerLinkController>() != null) continue;
-
-                    var controller = p.GameObject.AddComponent<PlayerLinkController>();
-                    controller.Init(p, target, lockRot, dur, fStart, fEnd);
-                }
-            });
-        }
-
-        private Transform FindTransformRecursive(Transform parent, string name)
-        {
-            if (string.IsNullOrEmpty(name)) return null;
-            foreach (Transform child in parent.GetComponentsInChildren<Transform>(true))
-            {
-                if (child.name == name) return child;
-            }
-            return null;
-        }
-    }
 
 [Serializable]
 public class SColor

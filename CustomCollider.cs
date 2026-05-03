@@ -220,7 +220,6 @@ public class CustomCollider : ZAMERTInteractable
             { ColliderActionType.ModifyPrimitive, () => PrimitiveModifyModule.Execute(Base.PrimitiveModifyModules, args) },
             { ColliderActionType.ControlSpeaker, () => LoopSpeakerControlModule.Execute(Base.LoopSpeakerModules, args) },
             { ColliderActionType.ControlItemSpawner, () => ItemSpawnerControlModule.Execute(Base.ItemSpawnerModules, args) },
-            { ColliderActionType.PlayerLink, () => PlayerLinkModule.Execute(Base.PlayerLink, args) }
         };
         foreach (ColliderActionType type in Enum.GetValues(typeof(ColliderActionType)))
         {
@@ -312,7 +311,6 @@ public class FCustomCollider : CustomCollider
             { ColliderActionType.ModifyPrimitive, () => FPrimitiveModifyModule.Execute(Base.PrimitiveModifyModules, args) },
             { ColliderActionType.ControlSpeaker, () => FLoopSpeakerControlModule.Execute(Base.LoopSpeakerModules, args) },
             { ColliderActionType.ControlItemSpawner, () => FItemSpawnerControlModule.Execute(Base.ItemSpawnerModules, args) },
-            { ColliderActionType.PlayerLink, () => FPlayerLinkModule.Execute(Base.PlayerLink, args) },
         };
         foreach (ColliderActionType type in Enum.GetValues(typeof(ColliderActionType)))
         {

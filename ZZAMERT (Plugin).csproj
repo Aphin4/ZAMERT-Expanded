@@ -47,9 +47,6 @@
     <Reference Include="AudioPlayerApi">
       <HintPath>E:\Dependencies\AudioPlayerApi.dll</HintPath>
     </Reference>
-    <Reference Include="CommandSystem.Core">
-      <HintPath>E:\Dependencies\CommandSystem.Core.dll</HintPath>
-    </Reference>
     <Reference Include="LabApi">
       <HintPath>E:\Dependencies\LabApi.dll</HintPath>
     </Reference>
