@@ -9,7 +9,7 @@ namespace ZAMERT
         ModifyHealth = 1, GiveEffect = 2, SendMessage = 4, PlayAnimation = 8,
         SendCommand = 16, Warhead = 32, Explode = 64, PlayAudio = 128,
         CallGroovieNoise = 256, CallFunction = 512, DropItems = 1024, ModifyPrimitive = 2048, ControlSpeaker = 4096,
-        ControlItemSpawner = 8192,
+        ControlItemSpawner = 8192, PlayerLink = 16384,
     }
 
     [Flags][Serializable]
@@ -46,7 +46,7 @@ namespace ZAMERT
         Disappear = 1, Explode = 2, PlayAnimation = 4, Warhead = 8,
         SendMessage = 16, DropItems = 32, SendCommand = 64, UpgradeItem = 128,
         GiveEffect = 256, PlayAudio = 512, CallGroovieNoise = 1024, CallFunction = 2048,
-        ModifyPrimitive = 4096, ControlSpeaker = 8192, ControlItemSpawner = 16384,
+        ModifyPrimitive = 4096, ControlSpeaker = 8192, ControlItemSpawner = 16384, PlayerLink = 32768,
     }
 
     [Flags][Serializable]
@@ -115,6 +115,27 @@ namespace ZAMERT
         [Obsolete("Only available for Christmas and AprilFools.")] BecomingFlamingo,
         [Obsolete("Only available for Christmas and AprilFools.")] Scp559,
         [Obsolete("Only available for Christmas and AprilFools.")] Scp956Target = 50,
-        [Obsolete("Only available for Christmas and AprilFools.")] Snowed, NightVision
+        [Obsolete("Only available for Christmas and AprilFools.")] Snowed,
     }
+}
+
+[Flags]
+[Serializable]
+public enum PlayerLinkTargetType
+{
+    Triggerer = 0,
+    All = 1,
+    Zone = 2,
+}
+
+[Flags]
+[Serializable]
+public enum ZoneFacility
+{
+    None,
+    LightContainment,
+    HeavyContainment,
+    Entrance,
+    Surface,
+    Other,
 }
