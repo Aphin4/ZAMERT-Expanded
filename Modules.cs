@@ -108,6 +108,7 @@ public class MDTO : ZAMERTDTO
     public List<PrimitiveModifyModule> PrimitiveModifyModules { get; set; }
     public List<LoopSpeakerControlModule> LoopSpeakerModules { get; set; }
     public List<ItemSpawnerControlModule> ItemSpawnerModules { get; set; }
+    public List<PlayerLinkModule> PlayerLink { get; set; } = new List<PlayerLinkModule>();
 }
 
 public class FMDTO : ZAMERTDTO
@@ -1721,6 +1722,155 @@ public class FItemSpawnerControlModule : FRandomExecutionModule
         });
     }
 }
+
+    [Serializable]
+    public class PlayerLinkModule : RandomExecutionModule
+    {
+        public string TargetObjectName;
+        public bool LockRotation;
+        public float Duration;
+        public bool FlashOnStart;
+        public bool FlashOnEnd;
+        public PlayerLinkTargetType TargetType;
+        public ZoneFacility AmertZone;
+        public override void Execute(ModuleGeneralArguments args)
+        {
+            MEC.Timing.CallDelayed(ActionDelay, () =>
+            {
+                int zoneInt = (int)AmertZone;
+                var targetZone = (MapGeneration.FacilityZone)zoneInt;
+                Transform root = args.Transform.root;
+                Transform target = FindTransformRecursive(root, TargetObjectName);
+
+                if (target == null) target = args.Transform;
+
+                List<Player> playersToMove = new List<Player>();
+
+                switch (TargetType)
+                {
+                    case PlayerLinkTargetType.Triggerer:
+                        if (args.Player != null) playersToMove.Add(args.Player);
+                        break;
+
+                    case PlayerLinkTargetType.All:
+                        playersToMove.AddRange(Player.List);
+                        break;
+
+                    case PlayerLinkTargetType.Zone:
+                        foreach (Player p in Player.List)
+                        {
+                            if (p.Zone == targetZone)
+                            {
+                                playersToMove.Add(p);
+                            }
+                        }
+                        break;
+                }
+
+                foreach (Player p in playersToMove)
+                {
+                    if (p == null) continue;
+
+                    if (p.GameObject.GetComponent<PlayerLinkController>() != null) continue;
+
+                    var controller = p.GameObject.AddComponent<PlayerLinkController>();
+                    controller.Init(p, target, LockRotation, Duration, FlashOnStart, FlashOnEnd);
+                }
+            });
+        }
+
+        private Transform FindTransformRecursive(Transform parent, string name)
+        {
+            if (string.IsNullOrEmpty(name)) return null;
+            foreach (Transform child in parent.GetComponentsInChildren<Transform>(true))
+            {
+                if (child.name == name) return child;
+            }
+            return null;
+        }
+    }
+
+    [Serializable]
+    public class FPlayerLinkModule : FRandomExecutionModule
+    {
+        public ScriptValue TargetObjectName { get; set; }
+        public ScriptValue LockRotation { get; set; }
+        public ScriptValue Duration { get; set; }
+        public ScriptValue FlashOnStart { get; set; }
+        public ScriptValue FlashOnEnd { get; set; }
+        public ScriptValue TargetZone { get; set; }
+        public ScriptValue TargetType { get; set; }
+
+        public override void Execute(FunctionArgument args)
+        {
+            MEC.Timing.CallDelayed(ActionDelay.GetValue(args, 0f), () =>
+            {
+                string tName = TargetObjectName.GetValue(args, "CameraMount");
+                bool lockRot = LockRotation.GetValue(args, false);
+                float dur = Duration.GetValue(args, 10.0f);
+                bool fStart = FlashOnStart.GetValue(args, false);
+                bool fEnd = FlashOnEnd.GetValue(args, false);
+
+                int targetTypeInt = Convert.ToInt32(TargetType.GetValue(args, 0));
+                int targetZoneInt = Convert.ToInt32(TargetZone.GetValue(args, 4));
+
+                var type = (PlayerLinkTargetType)targetTypeInt;
+                var zone = (ZoneFacility)targetZoneInt;
+
+                var targetType = (PlayerLinkTargetType)TargetType.GetValue(args, 0);
+                int zoneInt = TargetZone.GetValue(args, 0);
+                var gameZone = (MapGeneration.FacilityZone)zoneInt;
+
+
+                Transform root = args.Transform.root;
+                Transform target = FindTransformRecursive(root, tName);
+                if (target == null) target = args.Transform;
+
+
+                List<Player> playersToMove = new List<Player>();
+
+                switch (type)
+                {
+                    case PlayerLinkTargetType.Triggerer:
+                        if (args.Player != null) playersToMove.Add(args.Player);
+                        break;
+
+                    case PlayerLinkTargetType.All:
+                        playersToMove.AddRange(Player.List);
+                        break;
+
+                    case PlayerLinkTargetType.Zone:
+                        foreach (Player p in Player.List)
+                        {
+                            if (p.Zone == gameZone)
+                            {
+                                playersToMove.Add(p);
+                            }
+                        }
+                        break;
+                }
+                foreach (Player p in playersToMove)
+                {
+                    if (p == null) continue;
+
+                    if (p.GameObject.GetComponent<PlayerLinkController>() != null) continue;
+
+                    var controller = p.GameObject.AddComponent<PlayerLinkController>();
+                    controller.Init(p, target, lockRot, dur, fStart, fEnd);
+                }
+            });
+        }
+
+        private Transform FindTransformRecursive(Transform parent, string name)
+        {
+            if (string.IsNullOrEmpty(name)) return null;
+            foreach (Transform child in parent.GetComponentsInChildren<Transform>(true))
+            {
+                if (child.name == name) return child;
+            }
+            return null;
+        }
+    }
 
 [Serializable]
 public class SColor

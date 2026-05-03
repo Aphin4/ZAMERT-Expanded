@@ -47,6 +47,10 @@
     <Reference Include="AudioPlayerApi">
       <HintPath>E:\Dependencies\AudioPlayerApi.dll</HintPath>
     </Reference>
+    <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Dependencies\CommandSystem.Core.dll</HintPath>
+    </Reference>
     <Reference Include="LabApi">
       <HintPath>E:\Dependencies\LabApi.dll</HintPath>
     </Reference>

@@ -299,6 +299,7 @@ namespace ZAMERT
                 { IPActionType.ModifyPrimitive, () => PrimitiveModifyModule.Execute(Base.PrimitiveModifyModules, args) },
                 { IPActionType.ControlSpeaker, () => LoopSpeakerControlModule.Execute(Base.LoopSpeakerModules, args) },
                 { IPActionType.ControlItemSpawner, () => ItemSpawnerControlModule.Execute(Base.ItemSpawnerModules, args) },
+                { IPActionType.PlayerLink, () => PlayerLinkModule.Execute(Base.PlayerLink, args) },
             };
 
             foreach (IPActionType type in Enum.GetValues(typeof(IPActionType)))
@@ -394,6 +395,7 @@ namespace ZAMERT
                 { IPActionType.ModifyPrimitive, () => FPrimitiveModifyModule.Execute(Base.PrimitiveModifyModules, args) },
                 { IPActionType.ControlSpeaker, () => FLoopSpeakerControlModule.Execute(Base.LoopSpeakerModules, args) },
                 { IPActionType.ControlItemSpawner, () => FItemSpawnerControlModule.Execute(Base.ItemSpawnerModules, args) },
+                { IPActionType.PlayerLink, () => FPlayerLinkModule.Execute(Base.PlayerLink, args) },
             };
 
             foreach (IPActionType type in Enum.GetValues(typeof(IPActionType)))
