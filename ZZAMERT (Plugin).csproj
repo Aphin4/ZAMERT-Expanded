@@ -33,48 +33,41 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>E:\Dependencies\0Harmony.dll</HintPath>
+      <HintPath>References\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="AMERTAudioModule">
-      <HintPath>E:\Dependencies\AMERTAudioModule.dll</HintPath>
+      <HintPath>References\AMERTAudioModule.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>E:\Dependencies\Assembly-CSharp.dll</HintPath>
+      <HintPath>References\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>E:\Dependencies\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>References\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="AudioPlayerApi">
-      <HintPath>E:\Dependencies\AudioPlayerApi.dll</HintPath>
+      <HintPath>References\AudioPlayerApi.dll</HintPath>
     </Reference>
     <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Dependencies\CommandSystem.Core.dll</HintPath>
+      <HintPath>References\CommandSystem.Core.dll</HintPath>
     </Reference>
     <Reference Include="LabApi">
-      <HintPath>E:\Dependencies\LabApi.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+      <HintPath>References\LabApi.dll</HintPath>
     </Reference>
     <Reference Include="Mirror">
-      <HintPath>E:\Dependencies\Mirror.dll</HintPath>
-    </Reference>
-    <Reference Include="netstandard">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\netstandard.dll</HintPath>
+      <HintPath>References\Mirror.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>E:\Dependencies\Newtonsoft.Json.dll</HintPath>
+      <HintPath>References\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NorthwoodLib">
-      <HintPath>E:\Dependencies\NorthwoodLib.dll</HintPath>
+      <HintPath>References\NorthwoodLib.dll</HintPath>
     </Reference>
     <Reference Include="Pooling">
-      <HintPath>E:\Dependencies\Pooling.dll</HintPath>
+      <HintPath>References\Pooling.dll</HintPath>
     </Reference>
     <Reference Include="ProjectMER">
-      <HintPath>E:\Dependencies\ProjectMER.dll</HintPath>
+      <HintPath>References\ProjectMER.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -85,19 +78,19 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>E:\Dependencies\UnityEngine.dll</HintPath>
+      <HintPath>References\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>E:\Dependencies\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>References\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>E:\Dependencies\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>References\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>E:\Dependencies\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>References\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="YamlDotNet">
-      <HintPath>E:\Dependencies\YamlDotNet.dll</HintPath>
+      <HintPath>References\YamlDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +122,7 @@
     <Compile Include="LabApiExtensions.cs" />
     <Compile Include="Modules.cs" />
     <Compile Include="Patches.cs" />
+    <Compile Include="PlayerLink.cs" />
     <Compile Include="Serializables.cs" />
     <Compile Include="ServerSettings.cs" />
     <Compile Include="ValueCollections.cs" />

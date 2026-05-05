@@ -98,6 +98,7 @@ public class InteractableTeleporter : ZAMERTInteractable
             { IPActionType.PlayAudio, () => AudioModule.Execute(Base.AudioModules, args) },
             { IPActionType.CallGroovieNoise, () => CGNModule.Execute(Base.GroovieNoiseToCall, args) },
             { IPActionType.CallFunction, () => CFEModule.Execute(Base.FunctionToCall, args) },
+            { IPActionType.PlayerLink, () => PlayerLinkModule.Execute(Base.PlayerLinkModules, args) } // idk if it works or not, if the original module as a whole works, then it should
         };
         foreach (IPActionType type in Enum.GetValues(typeof(IPActionType)))
         {

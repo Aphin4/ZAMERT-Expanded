@@ -360,6 +360,7 @@ namespace ZAMERT
                         { DeadType.ModifyPrimitive, () => PrimitiveModifyModule.Execute(Base.PrimitiveModifyModules, args) },
                         { DeadType.ControlSpeaker, () => LoopSpeakerControlModule.Execute(Base.LoopSpeakerModules, args) },
                         { DeadType.ControlItemSpawner, () => ItemSpawnerControlModule.Execute(Base.ItemSpawnerModules, args) },
+                        { DeadType.PlayerLink, () => PlayerLinkModule.Execute(Base.PlayerLinkModules, args) }
                     };
 
                     foreach (DeadType type in Enum.GetValues(typeof(DeadType)))

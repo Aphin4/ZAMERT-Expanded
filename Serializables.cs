@@ -37,7 +37,7 @@ namespace ZAMERT
         ResetHP = 16, PlayAnimation = 32, Warhead = 64, SendMessage = 128,
         DropItems = 256, SendCommand = 512, GiveEffect = 1024, PlayAudio = 2048,
         CallGroovieNoise = 4096, CallFunction = 8192, ModifyPrimitive = 16384, ControlSpeaker = 32768,
-        ControlItemSpawner = 65536,
+        ControlItemSpawner = 65536, PlayerLink = 131072,
     }
 
     [Flags][Serializable]
@@ -126,6 +126,7 @@ public enum PlayerLinkTargetType
     Triggerer = 0,
     All = 1,
     Zone = 2,
+    Around = 4,
 }
 
 [Flags]

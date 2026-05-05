@@ -46,6 +46,7 @@ public enum ColliderActionType
 	ModifyPrimitive = 2048,
 	ControlSpeaker = 4096,
 	ControlItemSpawner = 8192,
+	PlayerLink = 16384,
 }
 
 [Flags]
@@ -223,6 +224,7 @@ public enum DeadType
 	ModifyPrimitive = 16384,
 	ControlSpeaker = 32768,
 	ControlItemSpawner = 65536,
+	PlayerLink = 131072,
 }
 
 [Flags]
@@ -302,6 +304,7 @@ public enum IPActionType
 	ModifyPrimitive = 4096,
 	ControlSpeaker = 8192,
 	ControlItemSpawner = 16384,
+	PlayerLink = 32768,
 }
 
 [Flags]
@@ -409,6 +412,28 @@ public enum RoleTypeId : sbyte
 	AlphaFlamingo,
 
 	ZombieFlamingo
+}
+
+[Flags]
+[Serializable]
+public enum PlayerLinkTargetType
+{
+    Triggerer = 0,
+    All = 1,
+    Zone = 2,
+	Around = 4,
+}
+
+[Flags]
+[Serializable]
+public enum ZoneFacility
+{
+    None,
+    LightContainment,
+    HeavyContainment,
+    Entrance,
+    Surface,
+    Other,
 }
 
 public class PublicFunctions

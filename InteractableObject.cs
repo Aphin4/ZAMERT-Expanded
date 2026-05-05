@@ -185,6 +185,7 @@ namespace ZAMERT
             if (Base.DenyActionType.HasFlag(IPActionType.ModifyPrimitive)) PrimitiveModifyModule.Execute(Base.DenyPrimitiveModifyModules, denyArgs);
             if (Base.DenyActionType.HasFlag(IPActionType.ControlSpeaker)) LoopSpeakerControlModule.Execute(Base.DenyLoopSpeakerModules, denyArgs);
             if (Base.DenyActionType.HasFlag(IPActionType.ControlItemSpawner)) ItemSpawnerControlModule.Execute(Base.DenyItemSpawnerModules, denyArgs);
+            if (Base.DenyActionType.HasFlag(IPActionType.PlayerLink)) PlayerLinkModule.Execute(Base.DenyPlayerLinkModules, denyArgs);
         }
 
         protected void ExecuteFDenyActions(Player player, FIODTO FBase)
@@ -299,7 +300,7 @@ namespace ZAMERT
                 { IPActionType.ModifyPrimitive, () => PrimitiveModifyModule.Execute(Base.PrimitiveModifyModules, args) },
                 { IPActionType.ControlSpeaker, () => LoopSpeakerControlModule.Execute(Base.LoopSpeakerModules, args) },
                 { IPActionType.ControlItemSpawner, () => ItemSpawnerControlModule.Execute(Base.ItemSpawnerModules, args) },
-                { IPActionType.PlayerLink, () => PlayerLinkModule.Execute(Base.PlayerLink, args) },
+                { IPActionType.PlayerLink, () => PlayerLinkModule.Execute(Base.PlayerLinkModules, args) },
             };
 
             foreach (IPActionType type in Enum.GetValues(typeof(IPActionType)))
@@ -395,7 +396,6 @@ namespace ZAMERT
                 { IPActionType.ModifyPrimitive, () => FPrimitiveModifyModule.Execute(Base.PrimitiveModifyModules, args) },
                 { IPActionType.ControlSpeaker, () => FLoopSpeakerControlModule.Execute(Base.LoopSpeakerModules, args) },
                 { IPActionType.ControlItemSpawner, () => FItemSpawnerControlModule.Execute(Base.ItemSpawnerModules, args) },
-                { IPActionType.PlayerLink, () => FPlayerLinkModule.Execute(Base.PlayerLink, args) },
             };
 
             foreach (IPActionType type in Enum.GetValues(typeof(IPActionType)))

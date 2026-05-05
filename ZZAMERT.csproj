@@ -319,6 +319,7 @@
     <Compile Include="ZAMERTLogger.cs" />
     <Compile Include="ZAMERTPlugin.cs" />
     <Compile Include="ZMapper.cs" />
+	<Compile Include="PlayerLink.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

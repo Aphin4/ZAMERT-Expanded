@@ -46,6 +46,7 @@ public class HODTO : DTO
     public List<PrimitiveModifyModule> PrimitiveModifyModules;
     public List<LoopSpeakerControlModule> LoopSpeakerModules;
     public List<ItemSpawnerControlModule> ItemSpawnerModules;
+    public List<PlayerLinkModule> PlayerLinkModules;
 }
 
 [Serializable]
