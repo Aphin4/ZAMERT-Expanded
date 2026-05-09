@@ -418,22 +418,22 @@ public enum RoleTypeId : sbyte
 [Serializable]
 public enum PlayerLinkTargetType
 {
-    Triggerer = 0,
-    All = 1,
-    Zone = 2,
-	Around = 4,
+    Triggerer = 1,
+    All = 2,
+    Zone = 4,
+	Around = 8,
 }
 
 [Flags]
 [Serializable]
 public enum ZoneFacility
 {
-    None,
-    LightContainment,
-    HeavyContainment,
-    Entrance,
-    Surface,
-    Other,
+    None = 1,
+    LightContainment = 2,
+    HeavyContainment = 4,
+    Entrance = 8,
+    Surface = 16,
+    Other = 32,
 }
 
 public class PublicFunctions

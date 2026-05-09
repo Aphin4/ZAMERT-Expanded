@@ -460,12 +460,13 @@ public class PlayerLinkModule : RandomExecutionModule
     public string TargetObjectName; // Имя объекта, к которому привязываем
     public bool LockRotation;       // Блокировать ли вращение камеры
     public float Duration;          // Длительность привязки
-	[Header("Using effect Flashed and adds 0.8 seconds before start")]
+	[Header("Using effect Flashed and adds 0.8 seconds before start and end")]
     public bool FlashOnStart;       // Ослепить в начале
     public bool FlashOnEnd;         // Ослепить в конце
     public PlayerLinkTargetType TargetType; // Кого привязываем
     public ZoneFacility TargetZone; // Где привязываем
 	public float Range; // Радиус по типу привязки Around
+	public bool CreateDummy; // создавать ли dummy
 }
 
 [Serializable]

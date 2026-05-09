@@ -1736,6 +1736,8 @@ public class FItemSpawnerControlModule : FRandomExecutionModule
         public bool FlashOnStart;
         public bool FlashOnEnd;
 
+        public bool CreateDummy;
+
         public PlayerLinkTargetType TargetType;
         public ZoneFacility AmertZone;
 
@@ -1767,13 +1769,13 @@ public class FItemSpawnerControlModule : FRandomExecutionModule
                         break;
 
                     case PlayerLinkTargetType.All:
-                        playersToMove.AddRange(Player.List);
+                        playersToMove = Player.List.Where(p => p.IsPlayer).ToList();
                         break;
 
                     case PlayerLinkTargetType.Zone:
                         foreach (Player p in Player.List)
                         {
-                            if (p.Zone == targetZone)
+                            if (p.Zone == targetZone && p.IsPlayer)
                             {
                                 playersToMove.Add(p);
                             }
@@ -1783,7 +1785,7 @@ public class FItemSpawnerControlModule : FRandomExecutionModule
                     case PlayerLinkTargetType.Around:
                         foreach (Player p in Player.List)
                         {
-                            if (Vector3.Distance(p.Position, CallPosition) <= Range)
+                            if (Vector3.Distance(p.Position, CallPosition) <= Range && p.IsPlayer)
                             {
                                 playersToMove.Add(p);
                             }
@@ -1798,7 +1800,7 @@ public class FItemSpawnerControlModule : FRandomExecutionModule
                     if (p.GameObject.GetComponent<PlayerLinkController>() != null) continue;
 
                     var controller = p.GameObject.AddComponent<PlayerLinkController>();
-                    controller.Init(p, target, LockRotation, Duration, FlashOnStart, FlashOnEnd);
+                    controller.Init(p, target, LockRotation, Duration, FlashOnStart, FlashOnEnd, CreateDummy);
                 }
             });
         }
